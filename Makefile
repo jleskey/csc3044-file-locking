@@ -1,6 +1,6 @@
 # Compiler settings
 CC = gcc
-CFLAGS = -Wall -Wextra -g -ansi
+CFLAGS = -Wall -Wextra -ansi
 
 # Directories
 SRC_DIR = src
@@ -12,18 +12,16 @@ TARGETS = filelock program1 program2
 # All programs
 all: $(TARGETS)
 
-# Create output directory
+# Create the object file directory.
 $(OUT_DIR):
 	mkdir -p $(OUT_DIR)
 
-# Compile source files into object files
-$(OUT_DIR)/%.o: $(SRC_DIR)/%.c | $(OUT_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+# Target object files.
+$(TARGETS): %: $(OUT_DIR)/%
 
-# Link object files to create executables
-$(TARGETS): %: $(OUT_DIR)/%.o
-	$(CC) $(CFLAGS) $< -o $(OUT_DIR)/$@
-	rm $<
+# Compile source files into object files.
+$(OUT_DIR)/%: $(SRC_DIR)/%.c | $(OUT_DIR)
+	$(CC) $(CFLAGS) $< -o $@
 
 # Clean-up script
 clean:
