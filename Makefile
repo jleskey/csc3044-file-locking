@@ -16,12 +16,14 @@ all: $(TARGETS)
 $(OUT_DIR):
 	mkdir -p $(OUT_DIR)
 
-# Object linking
-$(TARGETS): %: $(OUT_DIR)/%
-
 # Compile source files into object files
-$(OUT_DIR)/%: $(SRC_DIR)/%.c | $(OUT_DIR)
+$(OUT_DIR)/%.o: $(SRC_DIR)/%.c | $(OUT_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+# Link object files to create executables
+$(TARGETS): %: $(OUT_DIR)/%.o
+	$(CC) $(CFLAGS) $< -o $(OUT_DIR)/$@
+	rm $<
 
 # Clean-up script
 clean:
