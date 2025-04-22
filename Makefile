@@ -7,8 +7,8 @@ SRC_DIR = src
 OUT_DIR = out
 
 # Files
-SRCS = $(SRC_DIR)/main.c
-TARGET = $(OUT_DIR)/shell
+SRCS = $(SRC_DIR)/filelock.c
+TARGET = $(OUT_DIR)/filelock
 
 # Program binary
 all: $(TARGET)
