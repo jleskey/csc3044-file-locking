@@ -5,7 +5,7 @@
  */
 #include <sys/stat.h>
 #include <fcntl.h>		/* fcntl API for file locking */
-#include <sys/types.h>  
+#include <sys/types.h>
 #include <unistd.h>     /* getpid system call */
 #include <stdio.h>
 #include <string.h>
@@ -32,11 +32,11 @@ void errExit(char *msg) {
 }
 
 int
-main(int argc, char *argv[])
+main()
 {
     int numRead, cmd, status;
     int fd[4], fnum;
-    char lock, cmdCh, whence, line[MAX_LINE];
+    char cmdCh, line[MAX_LINE];
     char fname[MAX_LINE];
     struct flock fl;
     long long len, st;
@@ -69,7 +69,6 @@ main(int argc, char *argv[])
 	  continue;
 	}
 
-        whence = 's';                   /* In case not otherwise filled in */
 	numRead = sscanf(line, "%c %d %lld %lld", &cmdCh, &fnum, &st, &len);
         fl.l_start = st;
         fl.l_len = len;
