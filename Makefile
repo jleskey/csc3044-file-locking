@@ -7,16 +7,21 @@ SRC_DIR = src
 OUT_DIR = out
 
 # Files
-SRCS = $(SRC_DIR)/filelock.c
-TARGET = $(OUT_DIR)/filelock
+TARGETS = filelock program1 program2
 
-# Program binary
-all: $(TARGET)
+# All programs
+all: $(TARGETS)
+
+# Create output directory
+$(OUT_DIR):
+	mkdir -p $(OUT_DIR)
 
 # Object linking
-$(TARGET): $(SRCS)
-	@mkdir -p $(OUT_DIR)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRCS)
+$(TARGETS): %: $(OUT_DIR)/%
+
+# Compile source files into object files
+$(OUT_DIR)/%: $(SRC_DIR)/%.c | $(OUT_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean-up script
 clean:
