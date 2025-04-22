@@ -1,0 +1,22 @@
+PID=5739> o 0 tests/tfile
+PID=5739> w 0 10 10
+Doing fcntl with fd 3, cmd 7
+[PID=5739] got lock
+PID=5739> w 0 50 10
+Doing fcntl with fd 3, cmd 7
+[PID=5739] got lock
+PID=5739>
+
+
+
+
+PID=5724> o 0 tests/tfile
+PID=5724> w 0 50 10
+Doing fcntl with fd 3, cmd 7
+[PID=5724] got lock
+PID=5724> w 0 10 10
+Doing fcntl with fd 3, cmd 7
+[PID=5724] failed (deadlock)
+PID=5724> u 0 50 10
+Doing fcntl with fd 3, cmd 6
+[PID=5724] unlocked
