@@ -1,6 +1,6 @@
 # Compiler settings
 CC = gcc
-CFLAGS = -Wall -Wextra -ansi
+CFLAGS = -Wall -Wextra
 
 # Directories
 SRC_DIR = src
