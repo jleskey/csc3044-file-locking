@@ -16,7 +16,7 @@
 int main(const int argc, const char *argv[]) {
     if (argc < 2) {
         printf("Usage: %s <FILE>\n", argv[0]);
-        return EXIT_SUCCESS;
+        return EXIT_FAILURE;
     }
 
     int descriptor = open(argv[1], O_RDWR | O_CREAT, 0644);
